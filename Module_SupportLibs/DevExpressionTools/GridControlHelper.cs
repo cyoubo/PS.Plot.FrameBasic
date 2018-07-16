@@ -288,6 +288,15 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.DevExpressionTools
                 this.gridView.Columns[item].OptionsColumn.AllowEdit = IsEdit;
             }
         }
+
+        public void DestoryDataSource()
+        {
+            if (this.DataTableSource != null)
+            {
+                this.DataTableSource.Rows.Clear();
+                this.DataTableSource.Columns.Clear();
+            }
+        }
     }
 
     public abstract class HighLightRowCommand

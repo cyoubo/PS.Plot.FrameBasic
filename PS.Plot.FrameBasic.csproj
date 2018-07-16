@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DB82E8DC-BD52-4D04-8DB9-DFE9689931FE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PS.Plot.FrameBasic</RootNamespace>
+    <AssemblyName>PS.Plot.FrameBasic</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aspose.Words, Version=17.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Module_SupportLibs\AsposeWord\Aspose.Words.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Charts.Designer.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Charts.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v15.2.UI, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v15.2.Wizard, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraNavBar.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Module_SupportLibs\Log4Net\log4net.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MarkdownSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Module_SupportLibs\MarkDownSharp\DLL\MarkdownSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Moon.Orm, Version=6.2.5819.29278, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Module_SupportLibs\MoonORM\Moon.Orm.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MySql.Data, Version=5.2.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Module_SupportLibs\MoonORM\MySql.Data.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>Module_SupportLibs\MoonORM\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Module_Common\Component\Adapter\BaseDataTableBuilder.cs" />
+    <Compile Include="Module_Common\Component\Adapter\BaseGridControlAdapter.cs" />
+    <Compile Include="Module_Common\Component\Adapter\BaseTableDeserializion.cs" />
+    <Compile Include="Module_Common\Component\AsynTask\BackgroudTask.cs" />
+    <Compile Include="Module_Common\Component\AsynTask\ProgressBarAsynTtask.cs" />
+    <Compile Include="Module_Common\Component\BaseService.cs" />
+    <Compile Include="Module_Common\Component\Command\BaseCommand.cs" />
+    <Compile Include="Module_Common\Component\Command\BaseConductor.cs" />
+    <Compile Include="Module_Common\Component\FileOperator\FileStructionTreeCheckNodeCommand.cs" />
+    <Compile Include="Module_Common\Component\FileOperator\FoldConstructor.cs" />
+    <Compile Include="Module_Common\Component\FileOperator\FoldStructionTreeCheckNodeCommand.cs" />
+    <Compile Include="Module_Common\Component\SQLClauseConvert\SQLCaluseConvertFactory.cs" />
+    <Compile Include="Module_Common\Component\SQLClauseConvert\CaluseConvert\BaseClauseConvert.cs" />
+    <Compile Include="Module_Common\Component\SQLClauseConvert\CaluseConvert\CommonCaluseConvert.cs" />
+    <Compile Include="Module_Common\Component\SQLClauseConvert\CaluseConvert\MySQLClauseConvert.cs" />
+    <Compile Include="Module_Common\Component\SQLClauseConvert\CaluseConvert\OracleClauseConvert.cs" />
+    <Compile Include="Module_Common\Component\SQLClauseConvert\CaluseConvert\SQLiteClauseConvert.cs" />
+    <Compile Include="Module_Common\Component\SQLClauseConvert\IClauseConvert\ISQLDateFunctionCovert.cs" />
+    <Compile Include="Module_Common\Component\TreeTable\IBuildTreeCommand.cs" />
+    <Compile Include="Module_Common\Component\TreeTable\TreeTableBuilder.cs" />
+    <Compile Include="Module_Common\Component\TreeTable\TreeTableConductor.cs" />
+    <Compile Include="Module_Common\Component\BaseUIMediator.cs" />
+    <Compile Include="Module_Common\Component\TreeTable\TreeTableUtils.cs" />
+    <Compile Include="Module_Common\Component\Validator.cs" />
+    <Compile Include="Module_Common\Form\Frm_SingleFrom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Module_Common\Form\Frm_SingleFrom.designer.cs">
+      <DependentUpon>Frm_SingleFrom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Module_Common\Interface\IOwnerCallBack.cs" />
+    <Compile Include="Module_Common\Interface\IValidateInput.cs" />
+    <Compile Include="Module_Common\Utils\ArraysUtils.cs" />
+    <Compile Include="Module_Common\Utils\DateUtils.cs" />
+    <Compile Include="Module_Common\Utils\DynamicCompilingUtils.cs" />
+    <Compile Include="Module_Common\Utils\EnumUtils.cs" />
+    <Compile Include="Module_Common\Utils\FileUtils.cs" />
+    <Compile Include="Module_Common\Utils\IniConfigUtils.cs" />
+    <Compile Include="Module_Common\Utils\MathAlgorithmUtils.cs" />
+    <Compile Include="Module_Common\Utils\ReflectUtils.cs" />
+    <Compile Include="Module_Common\Utils\SQLStatementUtils.cs" />
+    <Compile Include="Module_Common\Utils\StringUtils.cs" />
+    <Compile Include="Module_Common\Utils\SystemUtils.cs" />
+    <Compile Include="Module_Common\Utils\UniUtils.cs" />
+    <Compile Include="Module_SupportLibs\AsposeWord\Component\WorkHelper.cs" />
+    <Compile Include="Module_SupportLibs\AsposeWord\Controller\BaseController.cs" />
+    <Compile Include="Module_SupportLibs\AsposeWord\Controller\BookMarkController.cs" />
+    <Compile Include="Module_SupportLibs\AsposeWord\Entry\AsposeWordEntry.cs" />
+    <Compile Include="Module_SupportLibs\AsposeWord\Component\FormatConvert.cs" />
+    <Compile Include="Module_SupportLibs\AsposeWord\Entry\AsposeWordTemplateEntry.cs" />
+    <Compile Include="Module_SupportLibs\DevExpressionTools\ChartHelper2\ChartControlHelper.cs" />
+    <Compile Include="Module_SupportLibs\DevExpressionTools\ChartHelper2\SeriesDataBuilder.cs" />
+    <Compile Include="Module_SupportLibs\DevExpressionTools\ChartHelper2\SeriesStyleDesigner.cs" />
+    <Compile Include="Module_SupportLibs\DevExpressionTools\ControlAPI.cs" />
+    <Compile Include="Module_SupportLibs\DevExpressionTools\CotrolsEdit\DateRangeEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Module_SupportLibs\DevExpressionTools\CotrolsEdit\DateRangeEdit.Designer.cs">
+      <DependentUpon>DateRangeEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Module_SupportLibs\DevExpressionTools\CotrolsEdit\NumberRangeEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Module_SupportLibs\DevExpressionTools\CotrolsEdit\NumberRangeEdit.Designer.cs">
+      <DependentUpon>NumberRangeEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Module_SupportLibs\DevExpressionTools\GridControlHelper.cs" />
+    <Compile Include="Module_SupportLibs\DevExpressionTools\LayoutControlHelper.cs" />
+    <Compile Include="Module_SupportLibs\DevExpressionTools\MessageBoxHelper.cs" />
+    <Compile Include="Module_SupportLibs\DevExpressionTools\NavigatorHelper.cs" />
+    <Compile Include="Module_SupportLibs\DevExpressionTools\SortCommand\SortByDateCommand.cs" />
+    <Compile Include="Module_SupportLibs\DevExpressionTools\TabControlHelper.cs" />
+    <Compile Include="Module_SupportLibs\DevExpressionTools\TreeListHelper.cs" />
+    <Compile Include="Module_SupportLibs\DevExpressionTools\VGridControlHelper.cs" />
+    <Compile Include="Module_SupportLibs\Log4Net\Utils\AppenderEntries\AppenderEntry.cs" />
+    <Compile Include="Module_SupportLibs\Log4Net\Utils\AppenderEntries\FileAppenderEntry.cs" />
+    <Compile Include="Module_SupportLibs\Log4Net\Utils\EntryEnum\EnumFileAppenderTag.cs" />
+    <Compile Include="Module_SupportLibs\Log4Net\Utils\LayoutTag.cs" />
+    <Compile Include="Module_SupportLibs\Log4Net\Utils\TemplateMethod\Log4NetTemplateMethod.cs" />
+    <Compile Include="Module_SupportLibs\Log4Net\Utils\TemplateMethod\SimpleFileAppendTemplate.cs" />
+    <Compile Include="Module_SupportLibs\MarkDownSharpTools\MarkDownHTMLHelper.cs" />
+    <Compile Include="Module_SupportLibs\MarkDownSharpTools\MarkDownSymbol.cs" />
+    <Compile Include="Module_SupportLibs\MarkDownSharpTools\UC\UC MarkDownEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Module_SupportLibs\MarkDownSharpTools\UC\UC MarkDownEdit.Designer.cs">
+      <DependentUpon>UC MarkDownEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Module_SupportLibs\MoonORM\Componet\IDataBaseFactory.cs" />
+    <Compile Include="Module_SupportLibs\MoonORM\Componet\IQueryCommand.cs" />
+    <Compile Include="Module_SupportLibs\MoonORM\ConstDef\DBConst.cs" />
+    <Compile Include="Module_SupportLibs\MoonORM\Controller\EditBaseController.cs" />
+    <Compile Include="Module_SupportLibs\MoonORM\Controller\EditRelationController.cs" />
+    <Compile Include="Module_SupportLibs\MoonORM\Controller\EditRelationTargetController.cs" />
+    <Compile Include="Module_SupportLibs\MoonORM\Controller\ManageBaseController.cs" />
+    <Compile Include="Module_SupportLibs\MoonORM\Controller\MQLBaseController.cs" />
+    <Compile Include="Module_SupportLibs\MoonORM\Controller\QueryBaseController.cs" />
+    <Compile Include="Module_SupportLibs\MoonORM\Controller\SplitPageController.cs" />
+    <Compile Include="Module_SupportLibs\MoonORM\UC\UC_Connect2Sqlite.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Module_SupportLibs\MoonORM\UC\UC_Connect2Sqlite.Designer.cs">
+      <DependentUpon>UC_Connect2Sqlite.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Module_SupportLibs\AsposeWord\Aspose.Words.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Module_SupportLibs\Log4Net\log4net.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Module_SupportLibs\Log4Net\Log4Net.xml" />
+    <Content Include="Module_SupportLibs\MarkDownSharpTools\DLL\CustomMarkDownCss.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Module_SupportLibs\MarkDownSharpTools\DLL\MarkdownSharp.dll" />
+    <Content Include="Module_SupportLibs\MoonORM\Moon.Orm.dll" />
+    <Content Include="Module_SupportLibs\MoonORM\MySql.Data.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Module_SupportLibs\MoonORM\moon.license">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Module_Common\Form\Frm_SingleFrom.resx">
+      <DependentUpon>Frm_SingleFrom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module_SupportLibs\DevExpressionTools\CotrolsEdit\DateRangeEdit.resx">
+      <DependentUpon>DateRangeEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module_SupportLibs\DevExpressionTools\CotrolsEdit\NumberRangeEdit.resx">
+      <DependentUpon>NumberRangeEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module_SupportLibs\MarkDownSharpTools\UC\UC MarkDownEdit.resx">
+      <DependentUpon>UC MarkDownEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module_SupportLibs\MoonORM\UC\UC_Connect2Sqlite.resx">
+      <DependentUpon>UC_Connect2Sqlite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

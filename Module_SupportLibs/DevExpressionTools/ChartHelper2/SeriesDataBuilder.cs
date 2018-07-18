@@ -78,7 +78,10 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.DevExpressionTools.ChartHelper2
                 return;
 
             foreach (DataRow item in dt.Rows)
-                AddData(item[CatalogFieldName].ToString(), Double.Parse(item[ValueFieldName].ToString()));
+            {
+                string value = string.IsNullOrEmpty(item[ValueFieldName].ToString()) ? "0" : item[ValueFieldName].ToString();
+                AddData(item[CatalogFieldName].ToString(), Double.Parse(value));
+            }
         }
 
         public void AddDataFromTable(DataTable dataTable, int CatalogFieldNameIndex, int ValueFieldNameIndex)
@@ -173,5 +176,38 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.DevExpressionTools.ChartHelper2
         }
 
         public abstract void onAddDataEntry(T item);
+    }
+
+
+    public class MulitSingleDataValueSeriesBuilder
+    {
+        public IDictionary<string, Series> SeriesDict { get; protected set; }
+        public ViewType SeriesViewType { get; protected set; }
+
+        public void CreateSeriesDict(ViewType seriesType)
+        {
+            SeriesDict = new Dictionary<string, Series>();
+            SeriesViewType = seriesType;
+        }
+
+        public void ClearAllSeriesPoint()
+        {
+            if (SeriesDict == null)
+                return;
+            foreach (var item in SeriesDict)
+                item.Value.Points.Clear();
+        }
+
+        public void AddSereisFromDictionary(IDictionary<string, KeyValuePair<object,double>[]> dict)
+        {
+            foreach (string item in dict.Keys)
+            {
+                Series temp = SeriesDict.ContainsKey(item) == false ? new Series(item, SeriesViewType): SeriesDict[item];
+                foreach (var valesPairs in dict[item])
+                    temp.Points.Add(new SeriesPoint(valesPairs.Key,valesPairs.Value));
+                if (SeriesDict.ContainsKey(item) == false)
+                    SeriesDict.Add(item,temp);
+            }
+        }
     }
 }

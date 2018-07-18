@@ -205,7 +205,29 @@ namespace PS.Plot.FrameBasic.Module_Common.Utils
                 dst += Encoding.Unicode.GetString(bytes);
             }
             return dst;
-        }  
+        }
+
+        public static bool IsContainsWholeTrabsw(string srcText)
+        {
+            srcText = srcText.ToString().Trim();
+            if (!string.IsNullOrEmpty(srcText))
+            {
+                char[] c = srcText.ToCharArray();
+                for (int i = 0; i < c.Length; i++)
+                {
+                    if (c[i] == 12288)
+                    {
+                        c[i] = (char)32;
+                        continue;
+                    }
+                    if (c[i] > 65280 && c[i] < 65375)
+                        c[i] = (char)(c[i] - 65248);
+                }
+                string str = new String(c).ToString();
+                return Encoding.Default.GetByteCount(srcText) != Encoding.Default.GetByteCount(str);
+            }
+            return false;
+        }
 
 
     }

@@ -53,5 +53,6 @@ namespace PS.Plot.FrameBasic.Module_Common.Utils
         {
             return dateTime.AddMonths(1).AddDays(-dateTime.Day);
         }
+
     }
 }

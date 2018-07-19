@@ -95,6 +95,15 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.DevExpressionTools.ChartHelper2
             AddDataFromTable(dataTable, CatalogFieldName, ValueFieldName);
         }
 
+        public void AddDataFromDictonary(IDictionary<string, double> dict)
+        {
+            if (DataSeries == null)
+                return;
+
+            foreach (var item in dict)
+                AddData(item.Key.ToString(), item.Value);
+        }
+
         public void AddData(string calalogValue, double datavalue)
         {
             if (DataSeries == null)

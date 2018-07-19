@@ -21,7 +21,7 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.DevExpressionTools.ChartHelper2
         public void SetSeriesLengedOption(bool isShowInLenged, string Legend = "")
         {
             TargetSeries.ShowInLegend = isShowInLenged;
-            TargetSeries.LegendText = Legend;
+            TargetSeries.LegendTextPattern = Legend;
         }
 
         public void SetLineSeriesMarkerStyle(MarkerKind markerKind, int markerSize, Color markerColor)

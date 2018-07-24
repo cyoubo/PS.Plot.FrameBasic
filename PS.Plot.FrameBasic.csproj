@@ -107,6 +107,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SQLite">
       <HintPath>Module_SupportLibs\MoonORM\System.Data.SQLite.dll</HintPath>
@@ -130,6 +131,9 @@
     <Compile Include="Module_Common\Component\BaseService.cs" />
     <Compile Include="Module_Common\Component\Command\BaseCommand.cs" />
     <Compile Include="Module_Common\Component\Command\BaseConductor.cs" />
+    <Compile Include="Module_Common\Component\DataBaseConnect\ConnectStringInvoker.cs" />
+    <Compile Include="Module_Common\Component\DataBaseConnect\MySQLConnectParam.cs" />
+    <Compile Include="Module_Common\Component\DataBaseConnect\SQLiteConnectParam.cs" />
     <Compile Include="Module_Common\Component\FileOperator\FileStructionTreeCheckNodeCommand.cs" />
     <Compile Include="Module_Common\Component\FileOperator\FoldConstructor.cs" />
     <Compile Include="Module_Common\Component\FileOperator\FoldStructionTreeCheckNodeCommand.cs" />

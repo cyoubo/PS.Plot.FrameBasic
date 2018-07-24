@@ -92,6 +92,15 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.DevExpressionTools
             if (dateEdit.DateTime.Equals(new DateTime()))
                 dateEdit.Text = "";
         }
+
+        public static void InitialCombox(DevExpress.XtraEditors.ComboBoxEdit combox, IEnumerable<object> Elememets, int DefalutSelectedIndex = 0)
+        {
+            combox.Properties.Items.Clear();
+            foreach (var item in Elememets)
+                combox.Properties.Items.Add(item);
+            if (combox.Properties.Items.Count > 0)
+                combox.SelectedIndex = DefalutSelectedIndex;
+        }
     }
 
 

@@ -134,6 +134,7 @@
     <Compile Include="Module_Common\Component\DataBaseConnect\ConnectStringInvoker.cs" />
     <Compile Include="Module_Common\Component\DataBaseConnect\MySQLConnectParam.cs" />
     <Compile Include="Module_Common\Component\DataBaseConnect\SQLiteConnectParam.cs" />
+    <Compile Include="Module_Common\Component\FileOperator\FileIOInvoker.cs" />
     <Compile Include="Module_Common\Component\FileOperator\FileStructionTreeCheckNodeCommand.cs" />
     <Compile Include="Module_Common\Component\FileOperator\FoldConstructor.cs" />
     <Compile Include="Module_Common\Component\FileOperator\FoldStructionTreeCheckNodeCommand.cs" />
@@ -170,6 +171,7 @@
     <Compile Include="Module_Common\Utils\StringUtils.cs" />
     <Compile Include="Module_Common\Utils\SystemUtils.cs" />
     <Compile Include="Module_Common\Utils\UniUtils.cs" />
+    <Compile Include="Module_Common\Utils\XmlUtils.cs" />
     <Compile Include="Module_SupportLibs\AsposeWord\Component\WorkHelper.cs" />
     <Compile Include="Module_SupportLibs\AsposeWord\Controller\BaseController.cs" />
     <Compile Include="Module_SupportLibs\AsposeWord\Controller\BookMarkController.cs" />
@@ -253,11 +255,6 @@
     <Content Include="Module_SupportLibs\MoonORM\MySql.Data.dll" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Module_SupportLibs\MoonORM\moon.license">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Module_Common\Form\Frm_SingleFrom.resx">
       <DependentUpon>Frm_SingleFrom.cs</DependentUpon>
     </EmbeddedResource>
@@ -273,6 +270,7 @@
     <EmbeddedResource Include="Module_SupportLibs\MoonORM\UC\UC_Connect2Sqlite.resx">
       <DependentUpon>UC_Connect2Sqlite.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

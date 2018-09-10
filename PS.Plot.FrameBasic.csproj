@@ -131,6 +131,7 @@
     <Compile Include="Module_Common\Component\BaseService.cs" />
     <Compile Include="Module_Common\Component\Command\BaseCommand.cs" />
     <Compile Include="Module_Common\Component\Command\BaseConductor.cs" />
+    <Compile Include="Module_Common\Component\Config\INIConfigInvoker.cs" />
     <Compile Include="Module_Common\Component\DataBaseConnect\ConnectStringInvoker.cs" />
     <Compile Include="Module_Common\Component\DataBaseConnect\MySQLConnectParam.cs" />
     <Compile Include="Module_Common\Component\DataBaseConnect\SQLiteConnectParam.cs" />
@@ -243,6 +244,7 @@
     <Content Include="Module_SupportLibs\AsposeWord\Aspose.Words.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Module_SupportLibs\JsonTool\Newtonsoft.Json.dll" />
     <Content Include="Module_SupportLibs\Log4Net\log4net.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -270,7 +272,6 @@
     <EmbeddedResource Include="Module_SupportLibs\MoonORM\UC\UC_Connect2Sqlite.resx">
       <DependentUpon>UC_Connect2Sqlite.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

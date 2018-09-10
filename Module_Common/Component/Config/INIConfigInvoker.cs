@@ -6,10 +6,12 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PS.Plot.FrameBasic.Module_Common.Utils
+namespace PS.Plot.FrameBasic.Module_Common.Component.Config
 {
-    public class IniConfigUtils
+    public class INIConfigInvoker
     {
+        public string ErrorMessage { get; protected set; }
+
         [DllImport("kernel32")]
         private static extern long WritePrivateProfileString(string section, string key, string val, string filePath);
         [DllImport("kernel32")]
@@ -19,7 +21,7 @@ namespace PS.Plot.FrameBasic.Module_Common.Utils
 
         public string ConfigFilePath { set; get; }
 
-        public IniConfigUtils(string ConfigFileName, string ConfigFilePath)
+        public INIConfigInvoker(string ConfigFileName, string ConfigFilePath)
         {
             this.ConfigFileName = ConfigFilePath;
             this.ConfigFilePath = ConfigFileName;
@@ -42,13 +44,46 @@ namespace PS.Plot.FrameBasic.Module_Common.Utils
             return File.Exists(onCombineFullPath());
         }
 
-        public virtual bool ReadInI() { return false; }
-
-        public virtual void WriteInI() { }
-
         private string onCombineFullPath()
         {
             return System.IO.Path.Combine(ConfigFilePath, ConfigFileName);
         }
+
+        public bool readConfigParam(ref IIniConfigParam param)
+        {
+            bool result = false;
+            try
+            {
+                param.ReadIniConfig(this);
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+            }
+            return result;
+        }
+
+        public bool saveConfigParam(IIniConfigParam param)
+        {
+            bool result = false;
+            try
+            {
+                param.WriteIniConfig(this);
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+            }
+            return result;
+        }
+    }
+
+    public interface IIniConfigParam
+    {
+        void ReadIniConfig(INIConfigInvoker invoker);
+
+        void WriteIniConfig(INIConfigInvoker invoker);
     }
 }

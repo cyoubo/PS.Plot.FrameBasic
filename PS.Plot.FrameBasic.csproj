@@ -131,7 +131,9 @@
     <Compile Include="Module_Common\Component\BaseService.cs" />
     <Compile Include="Module_Common\Component\Command\BaseCommand.cs" />
     <Compile Include="Module_Common\Component\Command\BaseConductor.cs" />
+    <Compile Include="Module_Common\Component\Config\BaseConfigInvoker.cs" />
     <Compile Include="Module_Common\Component\Config\INIConfigInvoker.cs" />
+    <Compile Include="Module_Common\Component\Config\XMLConfigInvoker.cs" />
     <Compile Include="Module_Common\Component\DataBaseConnect\ConnectStringInvoker.cs" />
     <Compile Include="Module_Common\Component\DataBaseConnect\MySQLConnectParam.cs" />
     <Compile Include="Module_Common\Component\DataBaseConnect\SQLiteConnectParam.cs" />
@@ -165,9 +167,9 @@
     <Compile Include="Module_Common\Utils\DynamicCompilingUtils.cs" />
     <Compile Include="Module_Common\Utils\EnumUtils.cs" />
     <Compile Include="Module_Common\Utils\FileUtils.cs" />
-    <Compile Include="Module_Common\Utils\IniConfigUtils.cs" />
     <Compile Include="Module_Common\Utils\MathAlgorithmUtils.cs" />
     <Compile Include="Module_Common\Utils\ReflectUtils.cs" />
+    <Compile Include="Module_Common\Utils\ShareFoldUtils.cs" />
     <Compile Include="Module_Common\Utils\SQLStatementUtils.cs" />
     <Compile Include="Module_Common\Utils\StringUtils.cs" />
     <Compile Include="Module_Common\Utils\SystemUtils.cs" />

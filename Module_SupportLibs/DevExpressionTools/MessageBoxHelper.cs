@@ -70,5 +70,12 @@ namespace PS.Plot.FrameBasic.Module_System.DevExpressionTools
         {
             XtraMessageBox.Show(content, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        public static DialogResult ShowSaveStateDialog(bool IsSuccess)
+        {
+            string messeage = IsSuccess ? "保存成功" : "保存失败";
+            MessageBoxIcon icon = IsSuccess ? MessageBoxIcon.Information : MessageBoxIcon.Error;
+            return XtraMessageBox.Show(messeage, "提示", MessageBoxButtons.OK, icon);
+        }
     }
 }

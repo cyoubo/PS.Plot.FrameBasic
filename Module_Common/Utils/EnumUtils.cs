@@ -23,6 +23,14 @@ namespace PS.Plot.FrameBasic.Module_Common.Utils
             return result;
         }
 
+        public IList<T> TraverseEnums<T>(T enumElement)
+        {
+            IList<T> result = new List<T>();
+            foreach (T item in Enum.GetValues(typeof(T)))
+                result.Add(item);  
+            return result;
+        }
+
         public string GetEnumdescription(Enum enumElememt)
         {
             Type type = enumElememt.GetType();
@@ -69,5 +77,6 @@ namespace PS.Plot.FrameBasic.Module_Common.Utils
             }
             return result;
         }
+
     }
 }

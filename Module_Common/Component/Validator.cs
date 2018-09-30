@@ -57,5 +57,7 @@ namespace PS.Plot.FrameBasic.Module_Common.Component
             if(dateTime.Date.CompareTo(DateTime.Now.Date) > 0)
                 ErrorMessage += string.Format("{0} 不能大于本日日期 \n",contentName);
         }
+
+
     }
 }

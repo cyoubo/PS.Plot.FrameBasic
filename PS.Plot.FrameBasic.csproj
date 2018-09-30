@@ -201,6 +201,7 @@
     <Compile Include="Module_SupportLibs\DevExpressionTools\LayoutControlHelper.cs" />
     <Compile Include="Module_SupportLibs\DevExpressionTools\MessageBoxHelper.cs" />
     <Compile Include="Module_SupportLibs\DevExpressionTools\NavigatorHelper.cs" />
+    <Compile Include="Module_SupportLibs\DevExpressionTools\RadioGroupHelper.cs" />
     <Compile Include="Module_SupportLibs\DevExpressionTools\SortCommand\SortByDateCommand.cs" />
     <Compile Include="Module_SupportLibs\DevExpressionTools\TabControlHelper.cs" />
     <Compile Include="Module_SupportLibs\DevExpressionTools\TreeListHelper.cs" />
@@ -223,9 +224,11 @@
     <Compile Include="Module_SupportLibs\MoonORM\Componet\IQueryCommand.cs" />
     <Compile Include="Module_SupportLibs\MoonORM\ConstDef\DBConst.cs" />
     <Compile Include="Module_SupportLibs\MoonORM\Controller\EditBaseController.cs" />
+    <Compile Include="Module_SupportLibs\MoonORM\Controller\EditBaseController2.cs" />
     <Compile Include="Module_SupportLibs\MoonORM\Controller\EditRelationController.cs" />
     <Compile Include="Module_SupportLibs\MoonORM\Controller\EditRelationTargetController.cs" />
     <Compile Include="Module_SupportLibs\MoonORM\Controller\ManageBaseController.cs" />
+    <Compile Include="Module_SupportLibs\MoonORM\Controller\ManageBaseController2.cs" />
     <Compile Include="Module_SupportLibs\MoonORM\Controller\MQLBaseController.cs" />
     <Compile Include="Module_SupportLibs\MoonORM\Controller\QueryBaseController.cs" />
     <Compile Include="Module_SupportLibs\MoonORM\Controller\SplitPageController.cs" />

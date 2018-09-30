@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace PS.Plot.FrameBasic.Module_SupportLibs.MoonORM.Controller
 {
-    public abstract class ManageBaseController<T> : EditBaseController<T> where T : EntityBase, new() 
+    public abstract class ManageBaseController2<T, V> : EditBaseController2<T, V>
+        where T : EntityBase, new()
+        where V : MQLBase
     {
         public IList<T> TravleAllEntities()
         {

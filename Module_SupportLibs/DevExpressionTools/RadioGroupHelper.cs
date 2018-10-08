@@ -89,6 +89,16 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.DevExpressionTools
                     Radiogroup.SelectedIndex = index;
             }
         }
+
+        public void SelectItemByEnumDescription(string enumvalue)
+        {
+            Radiogroup.SelectedIndex = -1;
+            for (int index = 0; index < this.Radiogroup.Properties.Items.Count; index++)
+            {
+                if (Radiogroup.Properties.Items[index].Description.ToString().Equals(enumvalue))
+                    Radiogroup.SelectedIndex = index;
+            }
+        }
     }
 
     

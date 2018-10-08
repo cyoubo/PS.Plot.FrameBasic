@@ -58,6 +58,12 @@ namespace PS.Plot.FrameBasic.Module_Common.Utils
             return enumElememt.ToString();
         }
 
+        public string GetEnumdescriptionByValue(Type EnumType, int enumValue)
+        {
+            System.Enum enumElememt = (System.Enum)System.Enum.ToObject(EnumType, enumValue);
+            return GetEnumdescription(enumElememt);
+        }
+
         public IList<string> GetEnumdescriptions(Enum enumElememt)
         {
             IList<string> result = new List<string>();

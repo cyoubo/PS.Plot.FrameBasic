@@ -164,6 +164,24 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.MoonORM.Controller
             return result;
         }
 
+        protected bool ExsitByID<V>(int ID) where V : MQLBase
+        {
+            bool result = false;
+            using (var db = this.dbFactory.OpenDefalutDataBase())
+            {
+                try
+                {
+                    result = db.Exist<V>(onBlindIDWhere(ID));
+                }
+                catch (Exception ex)
+                {
+                    this.dbFactory.WriteSystemLog(DBConst.DeleteException, ex);
+                    m_ErrorMessage = ex.Message;
+                }
+            }
+            return result;
+        }
+
         public virtual string FormatDate(DateTime datetime)
         {
             return datetime.ToString("yyyy-MM-dd");

@@ -116,6 +116,24 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.MoonORM.Controller
             }
             return result;
         }
+        public bool UpdateEntryByID(EntityBase CurrentEntry)
+        {
+            bool result = false;
+            using (var db = this.dbFactory.OpenDefalutDataBase())
+            {
+                try
+                {
+                    db.Update(CurrentEntry);
+                    result = true;
+                }
+                catch (Exception ex)
+                {
+                    this.dbFactory.WriteSystemLog(DBConst.InsertException, ex);
+                    m_ErrorMessage = ex.Message;
+                }
+            }
+            return result;
+        }
         /// <summary>
         /// 删除实体
         /// </summary>

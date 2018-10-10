@@ -23,6 +23,17 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.MoonORM.Controller
             }
         }
 
+        protected IList<T> TravelEntitiesByWhereCaluse(MQLBase expression)
+        {
+            using (var db = this.dbFactory.OpenDefalutDataBase())
+            {
+                IList<T> result = db.GetEntities<T>(expression);
+                if (result == null)
+                    result = new List<T>();
+                return result;
+            }
+        }
+
         public T QueryEntryByID(int targetID)
         {
             T entry = new T();

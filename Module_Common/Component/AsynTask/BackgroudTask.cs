@@ -130,7 +130,7 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.AsynTask
         /// 任务成功的回调
         /// </summary>
         /// <param name="Result">异步方法的结果</param>
-        void onAsynTaskSucceed(object Result);
+        void onAsynTaskSucceed(object Result); 
         /// <summary>
         /// 任务异常的回调
         /// </summary>

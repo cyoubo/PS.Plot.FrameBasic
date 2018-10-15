@@ -45,8 +45,10 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.Adapter
         /// <returns>指定结构的空数据表</returns>
         public DataTable CreateDataTable()
         {
-            if (m_TableColum.Count == 0)
-                AddDataColumn();
+            if (m_TableColum.Count != 0)
+                m_TableColum.Clear();
+            
+            AddDataColumn();
 
             DataTable result = new DataTable();
             result.Columns.AddRange(m_TableColum.ToArray());

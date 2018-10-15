@@ -7,14 +7,11 @@ using System.ComponentModel;
 namespace PS.Plot.FrameBasic.Module_Common.Component.AsynTask
 {
     /// <summary>
-    /// 后台异步执行任务类
+    /// 后台异步执行任务类，一般用于包含进度信息的异步任务类
     /// </summary>
-    public abstract class BackgroudTask 
+    public abstract class BaseBackgroudTask : AbstractBackgroudTask
     {
-        /// <summary>
-        /// Net 框架中用于执行UI级异步的帮助类对象
-        /// </summary>
-        protected BackgroundWorker mWorker;
+        
         /// <summary>
         /// 进度条更新的命令
         /// </summary>
@@ -22,19 +19,13 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.AsynTask
         /// <summary>
         /// 任务状态更新的回调
         /// </summary>
-        public TaskStateChangedUpdateCallBack TaskStateChangedUpdateCallBack { get; set; }
+        public BaseTaskStateChangedUpdateCallBack TaskStateChangedUpdateCallBack { get; set; }
 
-        /// <summary>
-        /// 默认构造方法：用于构造异步组件
-        /// </summary>
-        public BackgroudTask()
+        public BaseBackgroudTask() : base()
         {
-            mWorker = new BackgroundWorker();
-            mWorker.WorkerReportsProgress = true;
-            mWorker.WorkerSupportsCancellation = true;
-            mWorker.ProgressChanged += backgroundWorker1_ProgressChanged;
-            mWorker.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
-            mWorker.DoWork += backgroundWorker1_DoWork;
+            this.mWorker.DoWork += backgroundWorker1_DoWork;
+            this.mWorker.ProgressChanged += backgroundWorker1_ProgressChanged;
+            this.mWorker.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
@@ -62,29 +53,6 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.AsynTask
                     TaskStateChangedUpdateCallBack.onAsynTaskSucceed(e.Result);
             }
         }
-
-        /// <summary>
-        /// 开始执行异步类
-        /// </summary>
-        /// <param name="StartParams">启动参数</param>
-        public void Start(object StartParams=null)
-        {
-            if(StartParams==null)
-                mWorker.RunWorkerAsync();
-            else
-                mWorker.RunWorkerAsync(StartParams);
-        }
-        /// <summary>
-        /// 取消异步类执行(该方法只是重置取消标识,并不停止任务执行)
-        /// </summary>
-        public void Cancl()
-        {
-            mWorker.CancelAsync();
-        }
-        /// <summary>
-        /// 获取当前取消的标识符
-        /// </summary>
-        protected bool IsCancl { get { return mWorker.CancellationPending; } }
         /// <summary>
         /// 发送异步更新请求
         /// </summary>
@@ -109,6 +77,7 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.AsynTask
         /// <param name="Result">传出参数，返回异步处理记过</param>
         public abstract void onAsynTaskExcuting(object Argument, bool Cancl, ref object Result);
     }
+
     /// <summary>
     /// 进度条更新命令接口(一般由被更新的进度条型控件实现)
     /// </summary>
@@ -121,10 +90,11 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.AsynTask
         /// <param name="Value">其他参数</param>
         void onProgressBarChanged(int Percent,object Value=null);
     }
+
     /// <summary>
     /// 异步任务状态更新的回调(一般由被更新的UI窗体实现)
     /// </summary>
-    public interface TaskStateChangedUpdateCallBack
+    public interface BaseTaskStateChangedUpdateCallBack
     {
         /// <summary>
         /// 任务成功的回调

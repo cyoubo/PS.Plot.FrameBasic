@@ -10,7 +10,7 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.AsynTask
     /// <summary>
     /// 带有.Net进度条的异步类基类
     /// </summary>
-    public abstract class ProgressBarAsynTtask : BackgroudTask
+    public abstract class ProgressBarAsynTtask : BaseBackgroudTask
     {
         /// <summary>
         /// 构造函数

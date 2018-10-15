@@ -108,7 +108,10 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.Adapter
                 NotifyfreshDataTable();
             }
         }
-
+        /// <summary>
+        /// 添加元素，该方法不会引起数据表更新
+        /// </summary>
+        /// <param name="item">待添加的元素</param>
         public void InsertItem(T item)
         {
             if (m_Data == null)

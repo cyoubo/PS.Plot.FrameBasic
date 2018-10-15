@@ -126,8 +126,10 @@
     <Compile Include="Module_Common\Component\Adapter\BaseDataTableBuilder.cs" />
     <Compile Include="Module_Common\Component\Adapter\BaseGridControlAdapter.cs" />
     <Compile Include="Module_Common\Component\Adapter\BaseTableDeserializion.cs" />
-    <Compile Include="Module_Common\Component\AsynTask\BackgroudTask.cs" />
+    <Compile Include="Module_Common\Component\AsynTask\BaseBackgroudTask.cs" />
+    <Compile Include="Module_Common\Component\AsynTask\AbstractBackgroudTask.cs" />
     <Compile Include="Module_Common\Component\AsynTask\ProgressBarAsynTtask.cs" />
+    <Compile Include="Module_Common\Component\AsynTask\SimpleBackgroundTask.cs" />
     <Compile Include="Module_Common\Component\BaseService.cs" />
     <Compile Include="Module_Common\Component\Command\BaseCommand.cs" />
     <Compile Include="Module_Common\Component\Command\BaseConductor.cs" />

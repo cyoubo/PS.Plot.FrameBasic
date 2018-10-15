@@ -21,6 +21,8 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.DevExpressionTools
 
         private CustomSortCommand sortCommand;
 
+        private CustomDrawCellCommand drawCellCommand;
+
 
         public GridControlHelper(GridView gridview, GridControl gridControl)
         {
@@ -128,6 +130,65 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.DevExpressionTools
             }
         }
 
+        private void gridView_RowStyle(object sender, RowStyleEventArgs e)
+        {
+            highLightRowCommand.ExecuteHighLight(this, e);
+        }
+
+        /// <summary>
+        /// 依据着色命令对表格行进行着色
+        /// </summary>
+        /// <param name="command">着色命令</param>
+        public void CustomDrawCellByCommand(CustomDrawCellCommand command)
+        {
+            if (command == null)
+                return;
+
+            //如果没有设置高亮filter
+            if (this.drawCellCommand == null)
+            {
+                this.drawCellCommand = command;
+                gridView.CustomDrawCell += gridView_CustomDrawCell;
+
+                for (int index = 0; index < this.gridView.RowCount; index++)
+                    this.gridView.RefreshRow(index);
+            }
+            else
+            {
+                //判断是否和当前filter一致
+                if (this.highLightRowCommand.Tag.Equals(command.Tag) == false)
+                {
+                    gridView.CustomDrawCell -= gridView_CustomDrawCell;
+                    gridView.CustomDrawCell += gridView_CustomDrawCell;
+
+                    for (int index = 0; index < this.gridView.RowCount; index++)
+                        this.gridView.RefreshRow(index);
+                }
+            }
+        }
+        /// <summary>
+        /// 移除着色命令
+        /// </summary>
+        public void RemoveCustomDrawCellCommand()
+        {
+            try
+            {
+                this.drawCellCommand = null;
+                gridView.CustomDrawCell -= gridView_CustomDrawCell;
+            }
+            catch (Exception) { }
+            finally
+            {
+                for (int index = 0; index < this.gridView.RowCount; index++)
+                    this.gridView.RefreshRow(index);
+            }
+        }
+
+        void gridView_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
+        {
+            this.drawCellCommand.ExecuteProgressBarCellDraw(sender, e);
+        }
+
         public void DisplayRowIndex(int IndexRowWidth = 30)
         {
             this.gridView.CustomDrawRowIndicator -= gridView_CustomDrawRowIndicator;
@@ -206,13 +267,6 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.DevExpressionTools
         {
             get { return gridControl; }
         }
-
-        private void gridView_RowStyle(object sender, RowStyleEventArgs e)
-        {
-            highLightRowCommand.ExecuteHighLight(this,e);
-        }
-
-        
 
         public void SetAllColumnVisible(bool p)
         {
@@ -297,6 +351,12 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.DevExpressionTools
                 this.DataTableSource.Columns.Clear();
             }
         }
+
+        public void setTableHeaderOption(bool showPopumenu, bool showFiltermenu)
+        {
+            this.gridView.OptionsCustomization.AllowFilter = showFiltermenu;
+            this.gridView.OptionsMenu.EnableColumnMenu = showPopumenu;
+        }
     }
 
     public abstract class HighLightRowCommand
@@ -312,6 +372,12 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.DevExpressionTools
     public abstract class CustomSortCommand
     {
         public abstract void ExecuteCustomSort(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnSortEventArgs e);
+        public virtual string Tag { get { return this.GetType().Name; } }
+    }
+
+    public abstract class CustomDrawCellCommand
+    {
+        public abstract void ExecuteProgressBarCellDraw(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e);
         public virtual string Tag { get { return this.GetType().Name; } }
     }
 

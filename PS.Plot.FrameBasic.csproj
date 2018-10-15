@@ -126,10 +126,13 @@
     <Compile Include="Module_Common\Component\Adapter\BaseDataTableBuilder.cs" />
     <Compile Include="Module_Common\Component\Adapter\BaseGridControlAdapter.cs" />
     <Compile Include="Module_Common\Component\Adapter\BaseTableDeserializion.cs" />
+    <Compile Include="Module_Common\Component\Adapter\ScanGridControlAdapter.cs" />
     <Compile Include="Module_Common\Component\AsynTask\BaseBackgroudTask.cs" />
     <Compile Include="Module_Common\Component\AsynTask\AbstractBackgroudTask.cs" />
     <Compile Include="Module_Common\Component\AsynTask\ProgressBarAsynTtask.cs" />
     <Compile Include="Module_Common\Component\AsynTask\SimpleBackgroundTask.cs" />
+    <Compile Include="Module_Common\Component\AsynTask\TimerInvoker.cs" />
+    <Compile Include="Module_Common\Component\AsynTask\UITimerInvoker.cs" />
     <Compile Include="Module_Common\Component\BaseService.cs" />
     <Compile Include="Module_Common\Component\Command\BaseCommand.cs" />
     <Compile Include="Module_Common\Component\Command\BaseConductor.cs" />
@@ -199,12 +202,13 @@
     <Compile Include="Module_SupportLibs\DevExpressionTools\CotrolsEdit\NumberRangeEdit.Designer.cs">
       <DependentUpon>NumberRangeEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Module_SupportLibs\DevExpressionTools\GridControlCommand\BaseCustomDrawCellCommand.cs" />
     <Compile Include="Module_SupportLibs\DevExpressionTools\GridControlHelper.cs" />
     <Compile Include="Module_SupportLibs\DevExpressionTools\LayoutControlHelper.cs" />
     <Compile Include="Module_SupportLibs\DevExpressionTools\MessageBoxHelper.cs" />
     <Compile Include="Module_SupportLibs\DevExpressionTools\NavigatorHelper.cs" />
     <Compile Include="Module_SupportLibs\DevExpressionTools\RadioGroupHelper.cs" />
-    <Compile Include="Module_SupportLibs\DevExpressionTools\SortCommand\SortByDateCommand.cs" />
+    <Compile Include="Module_SupportLibs\DevExpressionTools\GridControlCommand\SortByDateCommand.cs" />
     <Compile Include="Module_SupportLibs\DevExpressionTools\TabControlHelper.cs" />
     <Compile Include="Module_SupportLibs\DevExpressionTools\TreeListHelper.cs" />
     <Compile Include="Module_SupportLibs\DevExpressionTools\VGridControlHelper.cs" />

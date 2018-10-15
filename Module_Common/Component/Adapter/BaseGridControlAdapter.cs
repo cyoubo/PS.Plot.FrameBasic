@@ -100,8 +100,6 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.Adapter
         /// <param name="item">待添加的元素</param>
         public void AddItem(T item)
         {
-            
-            
             if (m_Data != null)
             {
                 m_Data.Add(item);

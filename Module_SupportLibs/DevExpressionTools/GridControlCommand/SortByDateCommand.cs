@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PS.Plot.FrameBasic.Module_SupportLibs.DevExpressionTools.SortCommand
+namespace PS.Plot.FrameBasic.Module_SupportLibs.DevExpressionTools.GridControlCommand
 {
     public class SortByDateCommand : CustomSortCommand
     {

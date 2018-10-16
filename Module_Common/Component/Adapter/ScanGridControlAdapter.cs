@@ -60,6 +60,8 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.Adapter
             NotifyDestoryTable();
             m_ResultTable = m_TableBuilder.CreateDataTable();
             onPrepareCreated(m_ResultTable, m_TableBuilder);
+            if (datas == null)
+                return;
             for (int index = 0; index < datas.Count; index++)
             {
                 onBeforeRowCreated(m_TableBuilder, index);
@@ -93,7 +95,6 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.Adapter
         /// <param name="RowIndex">当前索引序号</param>
         /// <param name="t">当前元素元素</param>
         public abstract void onCreateDataRow(ref DataRow tempRow, BaseDataTableBuilder builder, int RowIndex, T t);
-
         public virtual void onPrepareCreated(DataTable m_ResultTable, BaseDataTableBuilder m_TableBuilder) { }
         public virtual void onBeforeRowCreated(BaseDataTableBuilder m_TableBuilder, int index) { }
         public virtual void onFinishRowsCreated(DataTable m_ResultTable) { }

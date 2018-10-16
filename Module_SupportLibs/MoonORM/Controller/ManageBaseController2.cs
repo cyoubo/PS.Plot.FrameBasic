@@ -34,6 +34,14 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.MoonORM.Controller
             }
         }
 
+        protected bool ExistByWhereCaluse(WhereExpression where)
+        {
+            using (var db = this.dbFactory.OpenDefalutDataBase())
+            {
+                return db.Exist<V>(where);
+            }
+        }
+
         public T QueryEntryByID(int targetID)
         {
             T entry = new T();

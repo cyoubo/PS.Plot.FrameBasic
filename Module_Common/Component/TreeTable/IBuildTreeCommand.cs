@@ -21,7 +21,7 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.TreeTable
     /// <summary>
     /// 普通TreeList的节点构建命令
     /// </summary>
-    public abstract class BaseBuildTreeNodeCommand : IBuildTreeNodeCommand
+    public abstract class  BaseBuildTreeNodeCommand : IBuildTreeNodeCommand
     {
         /// <summary>
         /// 中间临时变量

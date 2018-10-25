@@ -78,7 +78,7 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.Adapter
                 m_ResultTable.Columns.Clear();
         }
         /// <summary>
-        /// 移除指定索引的元素，该方法会引起数据表更新
+        /// 移除指定索引的元素，该方法不会通知数据表更新
         /// </summary>
         /// <param name="index">指定索引</param>
         /// <returns>若发生异常，则返回T类型的默认值</returns>
@@ -90,7 +90,6 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.Adapter
             {
                 result = m_Data[index];
                 m_Data.RemoveAt(index);
-                //NotifyfreshDataTable();
             }
             return result;
         }

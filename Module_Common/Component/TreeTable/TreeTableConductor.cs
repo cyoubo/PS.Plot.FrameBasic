@@ -35,6 +35,10 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.TreeTable
             //清除上一次的表记录
             ClearTable();
 
+            //延迟构造Builder
+            if (TableBuilder == null)
+                TableBuilder = new TreeTableBuilder();
+
             try
             {
                 mResultTable = TableBuilder.CreateDataTable();

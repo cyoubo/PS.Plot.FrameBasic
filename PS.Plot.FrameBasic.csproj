@@ -154,6 +154,7 @@
     <Compile Include="Module_Common\Component\SQLClauseConvert\CaluseConvert\SQLiteClauseConvert.cs" />
     <Compile Include="Module_Common\Component\SQLClauseConvert\IClauseConvert\ISQLDateFunctionCovert.cs" />
     <Compile Include="Module_Common\Component\TreeTable\IBuildTreeCommand.cs" />
+    <Compile Include="Module_Common\Component\TreeTable\SelfCatalogTreeNodeCommand.cs" />
     <Compile Include="Module_Common\Component\TreeTable\TreeTableBuilder.cs" />
     <Compile Include="Module_Common\Component\TreeTable\TreeTableConductor.cs" />
     <Compile Include="Module_Common\Component\BaseUIMediator.cs" />
@@ -174,6 +175,7 @@
     <Compile Include="Module_Common\Utils\FileUtils.cs" />
     <Compile Include="Module_Common\Utils\MathAlgorithmUtils.cs" />
     <Compile Include="Module_Common\Utils\ReflectUtils.cs" />
+    <Compile Include="Module_Common\Utils\RegistryUtils.cs" />
     <Compile Include="Module_Common\Utils\ShareFoldUtils.cs" />
     <Compile Include="Module_Common\Utils\SQLStatementUtils.cs" />
     <Compile Include="Module_Common\Utils\StringUtils.cs" />
@@ -189,6 +191,7 @@
     <Compile Include="Module_SupportLibs\DevExpressionTools\ChartHelper2\ChartControlHelper.cs" />
     <Compile Include="Module_SupportLibs\DevExpressionTools\ChartHelper2\SeriesDataBuilder.cs" />
     <Compile Include="Module_SupportLibs\DevExpressionTools\ChartHelper2\SeriesStyleDesigner.cs" />
+    <Compile Include="Module_SupportLibs\DevExpressionTools\CheckTreeListHelper.cs" />
     <Compile Include="Module_SupportLibs\DevExpressionTools\ControlAPI.cs" />
     <Compile Include="Module_SupportLibs\DevExpressionTools\CotrolsEdit\DateRangeEdit.cs">
       <SubType>UserControl</SubType>

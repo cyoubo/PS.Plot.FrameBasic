@@ -16,6 +16,7 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.TreeTable
         public readonly string Value = "Value";
         public readonly string Tag = "Tag";
         public readonly string ParentID = "ParentID";
+        public readonly string DataSerialization = "DataSerialization";
 
         protected override void AddDataColumn()
         {
@@ -23,6 +24,7 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.TreeTable
             onCreateDataColumn(Value, typeof(string));
             onCreateDataColumn(Tag, typeof(string));
             onCreateDataColumn(ParentID, typeof(string));
+            onCreateDataColumn(DataSerialization, typeof(string));
         }
     }
 

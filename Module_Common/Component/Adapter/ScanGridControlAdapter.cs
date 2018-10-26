@@ -73,6 +73,8 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.Adapter
             onFinishRowsCreated(m_ResultTable);
         }
 
+        
+
         /// <summary>
         /// 添加中间变量，若tag对应的值已经存在，则先移除
         /// </summary>

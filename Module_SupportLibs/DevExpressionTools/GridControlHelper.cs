@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using System;
 using System.Collections.Generic;
@@ -357,6 +358,42 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.DevExpressionTools
             this.gridView.OptionsCustomization.AllowFilter = showFiltermenu;
             this.gridView.OptionsMenu.EnableColumnMenu = showPopumenu;
         }
+
+        private INewRowCallBack NewRowCallBack;
+
+        public void AddNewRowInputCallBack(INewRowCallBack callBack)
+        {
+            RemoveRowInputCallBack();
+
+            this.gridView.OptionsView.NewItemRowPosition = NewItemRowPosition.Bottom;
+            this.gridView.InitNewRow += gridView_InitNewRow;
+            this.gridView.ValidateRow += gridView_ValidateRow;
+            this.NewRowCallBack = callBack;
+        }
+
+        public void RemoveRowInputCallBack()
+        {
+            NewRowCallBack = null;
+            this.gridView.InitNewRow -= gridView_InitNewRow;
+            this.gridView.ValidateRow -= gridView_ValidateRow;
+            this.gridView.OptionsView.NewItemRowPosition = NewItemRowPosition.None;
+        }
+
+        void gridView_ValidateRow(object sender, ValidateRowEventArgs e)
+        {
+            NewRowCallBack.onValidateNewRow(this, e,(e.Row as DataRowView).Row);
+        }
+
+        void gridView_InitNewRow(object sender, InitNewRowEventArgs e)
+        {
+            NewRowCallBack.onAddNewRow(this, e);
+        }
+    }
+
+    public interface INewRowCallBack
+    {
+        void onAddNewRow(GridControlHelper gridControlHelper, InitNewRowEventArgs e);
+        void onValidateNewRow(GridControlHelper gridControlHelper, ValidateRowEventArgs e, DataRow NewRow);
     }
 
     public abstract class HighLightRowCommand

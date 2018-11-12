@@ -379,20 +379,26 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.DevExpressionTools
             this.gridView.OptionsView.NewItemRowPosition = NewItemRowPosition.None;
         }
 
-        void gridView_ValidateRow(object sender, ValidateRowEventArgs e)
+        private void gridView_ValidateRow(object sender, ValidateRowEventArgs e)
         {
             NewRowCallBack.onValidateNewRow(this, e,(e.Row as DataRowView).Row);
         }
 
-        void gridView_InitNewRow(object sender, InitNewRowEventArgs e)
+        private void gridView_InitNewRow(object sender, InitNewRowEventArgs e)
         {
-            NewRowCallBack.onAddNewRow(this, e);
+            NewRowCallBack.onNewRowAdded(this, e);
+        }
+
+        public void UpdateViewCellText(int RowHandle, string colName, object value)
+        {
+            if (RowHandle >= 0)
+                this.GridView.SetRowCellValue(RowHandle, colName, value);
         }
     }
 
     public interface INewRowCallBack
     {
-        void onAddNewRow(GridControlHelper gridControlHelper, InitNewRowEventArgs e);
+        void onNewRowAdded(GridControlHelper gridControlHelper, InitNewRowEventArgs e);
         void onValidateNewRow(GridControlHelper gridControlHelper, ValidateRowEventArgs e, DataRow NewRow);
     }
 
@@ -400,7 +406,6 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.DevExpressionTools
     {
         public abstract void ExecuteHighLight(GridControlHelper gridControlHelper, RowStyleEventArgs e);
         public virtual string Tag { get { return this.GetType().Name; } }
-
     }
 
     /// <summary>

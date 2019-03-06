@@ -34,6 +34,16 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.Adapter
             base.m_ResultTable.Rows.Add(tempRow);
         }
 
+        public void AddEntries(IList<T> list)
+        {
+            foreach (var item in list)
+            {
+                DataRow tempRow = base.m_ResultTable.NewRow();
+                onCreateDataRow(ref tempRow, m_TableBuilder, this.m_ResultTable.Rows.Count, item);
+                base.m_ResultTable.Rows.Add(tempRow);
+            }
+        }
+
         public void RemoveEntryByRowHandle(int RowHandle)
         {
             if (RowHandle >= 0 && RowHandle < base.m_ResultTable.Rows.Count)
@@ -52,6 +62,8 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.Adapter
             if(RowHandle >= 0)
                 base.m_ResultTable.Rows[RowHandle][colName] = value;
         }
+
+       
 
         
     }

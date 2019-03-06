@@ -208,6 +208,8 @@
     </Compile>
     <Compile Include="Module_SupportLibs\DevExpressionTools\GridControlCommand\BaseCustomDrawCellCommand.cs" />
     <Compile Include="Module_SupportLibs\DevExpressionTools\GridControlHelper.cs" />
+    <Compile Include="Module_SupportLibs\DevExpressionTools\GridControlViewState\GridControlBaseViewState.cs" />
+    <Compile Include="Module_SupportLibs\DevExpressionTools\GridControlViewState\GridControlViewStateContext.cs" />
     <Compile Include="Module_SupportLibs\DevExpressionTools\LayoutControlHelper.cs" />
     <Compile Include="Module_SupportLibs\DevExpressionTools\MessageBoxHelper.cs" />
     <Compile Include="Module_SupportLibs\DevExpressionTools\NavigatorHelper.cs" />

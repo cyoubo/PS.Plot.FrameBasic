@@ -59,6 +59,25 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.DevExpressionTools
                 this.Radiogroup.Properties.Columns = this.Radiogroup.Properties.Items.Count;
         }
 
+        public void FillRadioButtonByArray(string[] items, bool isShowInOneLine = true)
+        {
+            this.Radiogroup.Properties.Items.Clear();
+
+            int index = 0;
+            foreach (var temp in items)
+            {
+                RadioGroupItem item = new RadioGroupItem();
+                item.Tag = temp;
+                item.Value = index;
+                item.Description = temp;
+                this.Radiogroup.Properties.Items.Add(item);
+                index++;
+            }
+
+            if (isShowInOneLine)
+                this.Radiogroup.Properties.Columns = this.Radiogroup.Properties.Items.Count;
+        }
+
         public T GetSelectItemAsEnum<T>()
         {
             string name = this.Radiogroup.Properties.Items[this.Radiogroup.SelectedIndex].Tag.ToString();

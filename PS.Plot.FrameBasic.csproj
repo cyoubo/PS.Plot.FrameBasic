@@ -139,6 +139,7 @@
     <Compile Include="Module_Common\Component\Command\BaseConductor.cs" />
     <Compile Include="Module_Common\Component\Config\BaseConfigInvoker.cs" />
     <Compile Include="Module_Common\Component\Config\INIConfigInvoker.cs" />
+    <Compile Include="Module_Common\Component\Config\MutiSetsConfigInvoker.cs" />
     <Compile Include="Module_Common\Component\Config\XMLConfigInvoker.cs" />
     <Compile Include="Module_Common\Component\DataBaseConnect\ConnectStringInvoker.cs" />
     <Compile Include="Module_Common\Component\DataBaseConnect\MySQLConnectParam.cs" />
@@ -189,6 +190,7 @@
     <Compile Include="Module_SupportLibs\AsposeWord\Entry\AsposeWordEntry.cs" />
     <Compile Include="Module_SupportLibs\AsposeWord\Component\FormatConvert.cs" />
     <Compile Include="Module_SupportLibs\AsposeWord\Entry\AsposeWordTemplateEntry.cs" />
+    <Compile Include="Module_SupportLibs\DevExpressionTools\AdvBandedGridViewHelper.cs" />
     <Compile Include="Module_SupportLibs\DevExpressionTools\ChartHelper2\ChartControlHelper.cs" />
     <Compile Include="Module_SupportLibs\DevExpressionTools\ChartHelper2\SeriesDataBuilder.cs" />
     <Compile Include="Module_SupportLibs\DevExpressionTools\ChartHelper2\SeriesStyleDesigner.cs" />

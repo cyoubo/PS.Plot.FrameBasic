@@ -73,6 +73,8 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.DevExpressionTools.GridControlVi
         
         public virtual void onBeforeMainViewUpdate(GridControlViewStateContext<E> context) { }
 
+        public virtual void onPrepareMainViewUpdate(GridControlViewStateContext<E> context) { }
+
         public virtual bool IsContextTargetState(GridControlViewStateContext<E> context)
         {
             return context.CurrentState.Equals(GetCurrentState());
@@ -112,8 +114,8 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.DevExpressionTools.GridControlVi
             else
             {
                 onSaveContextProperties(context.Properties);
+                onPrepareMainViewUpdate(context);
                 TargetViewName = onGetCurrentViewName(context.Properties);
-
                 if (IsMainViewTarget(context, TargetViewName) == false)
                 {
                     if (ExtractTagetView(context, TargetViewName) && this.TargetView != null)
@@ -121,6 +123,7 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.DevExpressionTools.GridControlVi
                         onBeforeMainViewUpdate(context);
                         context.HostControl.MainView = TargetView;
                         onAfterMainViewUpdate(context);
+                        context.Properties.IsStateFirstLoad[GetCurrentState()] = false;
                     }
                 }
                 else
@@ -138,7 +141,20 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.DevExpressionTools.GridControlVi
                 }
             }
         }
-
     }
 
+
+    public abstract class GridControlBaseViewState3<E, V, B ,P> : GridControlBaseViewState2<E , V> where V : BaseView where B : BaseDataTableBuilder where P : GridControlViewStateProperties<E>
+    {
+        protected B TargetBuilder;
+
+        protected P TargetProperties;
+
+        public override void onPrepareMainViewUpdate(GridControlViewStateContext<E> context)
+        {
+            base.onPrepareMainViewUpdate(context);
+            TargetBuilder = ConvertToTargetBuilder<B>();
+            TargetProperties = ConvertToTargetProperties<P>();
+        }
+    }
 }

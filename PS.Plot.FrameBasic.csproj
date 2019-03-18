@@ -168,6 +168,7 @@
     <Compile Include="Module_Common\Form\Frm_SingleFrom.designer.cs">
       <DependentUpon>Frm_SingleFrom.cs</DependentUpon>
     </Compile>
+    <Compile Include="Module_Common\Component\IComboxItem.cs" />
     <Compile Include="Module_Common\Interface\IOwnerCallBack.cs" />
     <Compile Include="Module_Common\Interface\IValidateInput.cs" />
     <Compile Include="Module_Common\Utils\ArraysUtils.cs" />

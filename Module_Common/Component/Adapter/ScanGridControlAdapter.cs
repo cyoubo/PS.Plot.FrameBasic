@@ -71,6 +71,8 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.Adapter
                 onAfterRowCreated(tempRow, m_TableBuilder, index);
             }
             onFinishRowsCreated(m_ResultTable);
+            if (m_TempParams != null)
+                m_TempParams.Clear();
         }
         /// <summary>
         /// 添加中间变量，若tag对应的值已经存在，则先移除

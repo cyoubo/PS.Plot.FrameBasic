@@ -27,6 +27,22 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.DevExpressionTools
             }
         }
 
+        public static void SelectedComboxItemByComboxItem(DevExpress.XtraEditors.ComboBoxEdit cmb,Module_Common.Component.ComboxItem comboxItem)
+        {
+            if (comboxItem == null)
+                cmb.SelectedIndex = -1;
+            else
+                for (int index = 0; index < cmb.Properties.Items.Count; index++)
+                {
+                    Module_Common.Component.ComboxItem item = cmb.Properties.Items[index] as Module_Common.Component.ComboxItem;
+                    if (item.Tag.Equals(comboxItem.Tag))
+                    {
+                        cmb.SelectedIndex = index;
+                        return;
+                    }
+                }
+        }
+
         internal static void SelectedRadioGroupByText(DevExpress.XtraEditors.RadioGroup rg_Catalog, string p)
         {
             throw new NotImplementedException();
@@ -101,6 +117,8 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.DevExpressionTools
             if (combox.Properties.Items.Count > 0)
                 combox.SelectedIndex = DefalutSelectedIndex;
         }
+
+
     }
 
 

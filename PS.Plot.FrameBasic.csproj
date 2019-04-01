@@ -106,6 +106,10 @@
       <HintPath>Module_SupportLibs\MoonORM\MySql.Data.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Module_SupportLibs\MoonORM\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -144,6 +148,11 @@
     <Compile Include="Module_Common\Component\DataBaseConnect\ConnectStringInvoker.cs" />
     <Compile Include="Module_Common\Component\DataBaseConnect\MySQLConnectParam.cs" />
     <Compile Include="Module_Common\Component\DataBaseConnect\SQLiteConnectParam.cs" />
+    <Compile Include="Module_Common\Component\FileNameFilter\BaseFileNameFilter.cs" />
+    <Compile Include="Module_Common\Component\FileNameFilter\ContainFileNameFilter.cs" />
+    <Compile Include="Module_Common\Component\FileNameFilter\ExceptFileNameFilter.cs" />
+    <Compile Include="Module_Common\Component\FileNameFilter\FileNameFilterInvoker.cs" />
+    <Compile Include="Module_Common\Component\FileNameFilter\FileTravelUtils.cs" />
     <Compile Include="Module_Common\Component\FileOperator\FileIOInvoker.cs" />
     <Compile Include="Module_Common\Component\FileOperator\FileStructionTreeCheckNodeCommand.cs" />
     <Compile Include="Module_Common\Component\FileOperator\FoldConstructor.cs" />
@@ -162,6 +171,12 @@
     <Compile Include="Module_Common\Component\BaseUIMediator.cs" />
     <Compile Include="Module_Common\Component\TreeTable\TreeTableUtils.cs" />
     <Compile Include="Module_Common\Component\Validator.cs" />
+    <Compile Include="Module_Common\Form\Frm_FileNameFilterEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Module_Common\Form\Frm_FileNameFilterEdit.Designer.cs">
+      <DependentUpon>Frm_FileNameFilterEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Module_Common\Form\Frm_SingleFrom.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -277,6 +292,9 @@
     <Content Include="Module_SupportLibs\MoonORM\MySql.Data.dll" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Module_Common\Form\Frm_FileNameFilterEdit.resx">
+      <DependentUpon>Frm_FileNameFilterEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Module_Common\Form\Frm_SingleFrom.resx">
       <DependentUpon>Frm_SingleFrom.cs</DependentUpon>
     </EmbeddedResource>

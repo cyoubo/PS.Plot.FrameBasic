@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,9 +14,6 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.FileNameFilter
         string FileFullPath { get; }
     }
 
-    public delegate BaseFileNameFilter onCreateOtherTypeFileNameFilter(string typeName,BaseFileNameFilter baseFilter);
-    
-
     public class FileNameFilterInvoker
     {
         public const string Location_Head = "前缀";
@@ -25,7 +23,6 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.FileNameFilter
         public const string Type_Contains = "包含";
         public const string Type_Except = "排除";
 
-        public event onCreateOtherTypeFileNameFilter CreateOtherTypeFileNameFilterEvent;
 
         public IList<BaseFileNameFilter> Filters { get; protected set; }
 
@@ -36,19 +33,14 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.FileNameFilter
             Filters = new List<BaseFileNameFilter>();
             if (string.IsNullOrEmpty(defalutJson) == false)
             {
-                var arrdata = Newtonsoft.Json.Linq.JArray.Parse(defalutJson);
-                foreach (var item in arrdata.ToObject<List<BaseFileNameFilter>>())
-                    onCreateFilter(item);
+                JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings();
+                jsonSerializerSettings.TypeNameHandling = TypeNameHandling.All;
+                var arrays =  (List <BaseFileNameFilter>)JsonConvert.DeserializeObject(defalutJson, jsonSerializerSettings);
+                Filters = new List<BaseFileNameFilter>(arrays);
+                arrays.Clear();
             }
         }
         
-        protected void onCreateFilter(BaseFileNameFilter baseFilter)
-        {
-            if (baseFilter.Type.Equals(Type_Contains))
-                Filters.Add(new ContainsFileNameFilter() { KeyWord = baseFilter.KeyWord, Location = baseFilter.Location, Type = baseFilter.Type });
-            else 
-                Filters.Add(new ExceptFileNameFilter() { KeyWord = baseFilter.KeyWord, Location = baseFilter.Location, Type = baseFilter.Type });
-        }
 
         public void AddFilter(BaseFileNameFilter filter)
         { 
@@ -97,10 +89,7 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.FileNameFilter
 
         public string SerializeFilter()
         {
-            if (Filters != null && Filters.Count > 0)
-                return JsonConvert.SerializeObject(Filters, Formatting.Indented);
-            else
-                return "";
+            return FileNameFilterInvoker.SerializeFilter(Filters);
         }
 
         public static string[] TravelLocation()
@@ -115,8 +104,10 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.FileNameFilter
 
         public static string SerializeFilter(IList<BaseFileNameFilter> list)
         {
+            JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings();
+            jsonSerializerSettings.TypeNameHandling = TypeNameHandling.All;
             if (list != null && list.Count > 0)
-                return JsonConvert.SerializeObject(list, Formatting.Indented);
+                return JsonConvert.SerializeObject(list, Formatting.Indented, jsonSerializerSettings);
             else
                 return "";
         }

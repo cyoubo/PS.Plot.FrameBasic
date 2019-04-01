@@ -191,6 +191,7 @@
     <Compile Include="Module_Common\Utils\DynamicCompilingUtils.cs" />
     <Compile Include="Module_Common\Utils\EnumUtils.cs" />
     <Compile Include="Module_Common\Utils\FileUtils.cs" />
+    <Compile Include="Module_Common\Utils\GZipUtils.cs" />
     <Compile Include="Module_Common\Utils\MathAlgorithmUtils.cs" />
     <Compile Include="Module_Common\Utils\ReflectUtils.cs" />
     <Compile Include="Module_Common\Utils\RegistryUtils.cs" />

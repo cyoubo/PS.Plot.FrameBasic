@@ -394,6 +394,21 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.DevExpressionTools
             if (RowHandle >= 0)
                 this.GridView.SetRowCellValue(RowHandle, colName, value);
         }
+
+        private delegate void UpdateTableSourceAsynHanlder(DataTable dataTable);
+
+        public void UpdateTableSourceAsyn(DataTable dataTable)
+        {
+            if (this.GridControl.InvokeRequired == true)
+            {
+                UpdateTableSourceAsynHanlder hanlder = new UpdateTableSourceAsynHanlder(UpdateTableSourceAsyn);
+                this.GridControl.Invoke(hanlder, new object[] { dataTable });
+            }
+            else
+            {
+                this.GridControl.DataSource = dataTable;
+            }
+        }
     }
 
     public interface INewRowCallBack

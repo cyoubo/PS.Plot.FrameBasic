@@ -260,6 +260,7 @@
     <Compile Include="Module_SupportLibs\MoonORM\Controller\EditRelationTargetController.cs" />
     <Compile Include="Module_SupportLibs\MoonORM\Controller\ManageBaseController.cs" />
     <Compile Include="Module_SupportLibs\MoonORM\Controller\ManageBaseController2.cs" />
+    <Compile Include="Module_SupportLibs\MoonORM\Controller\ManageGUIDController.cs" />
     <Compile Include="Module_SupportLibs\MoonORM\Controller\MQLBaseController.cs" />
     <Compile Include="Module_SupportLibs\MoonORM\Controller\QueryBaseController.cs" />
     <Compile Include="Module_SupportLibs\MoonORM\Controller\SplitPageController.cs" />

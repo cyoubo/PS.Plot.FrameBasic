@@ -93,5 +93,23 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.AsposeWord.Component
             }
             mBuilder.EndTable();
         }
+
+        public Document CopyNodeToNewDoc(Node node)
+        {
+            Document docNew = new Document();
+            docNew.FirstSection.Body.RemoveAllChildren();
+            NodeImporter importer = new NodeImporter(mdoc, docNew, ImportFormatMode.KeepSourceFormatting);
+            Node importNode = importer.ImportNode(node, true);
+            docNew.FirstSection.Body.AppendChild(importNode);
+            return docNew;
+        }
+
+        public void CopyNodeToOtherDoc(Node node,Document docNew)
+        {
+            docNew.FirstSection.Body.RemoveAllChildren();
+            NodeImporter importer = new NodeImporter(mdoc, docNew, ImportFormatMode.KeepSourceFormatting);
+            Node importNode = importer.ImportNode(node, true);
+            docNew.FirstSection.Body.AppendChild(importNode);
+        }
     }
 }

@@ -184,6 +184,7 @@
       <DependentUpon>Frm_SingleFrom.cs</DependentUpon>
     </Compile>
     <Compile Include="Module_Common\Component\IComboxItem.cs" />
+    <Compile Include="Module_Common\Interface\IComboxItem.cs" />
     <Compile Include="Module_Common\Interface\IOwnerCallBack.cs" />
     <Compile Include="Module_Common\Interface\IValidateInput.cs" />
     <Compile Include="Module_Common\Utils\ArraysUtils.cs" />
@@ -191,6 +192,7 @@
     <Compile Include="Module_Common\Utils\DynamicCompilingUtils.cs" />
     <Compile Include="Module_Common\Utils\EnumUtils.cs" />
     <Compile Include="Module_Common\Utils\FileUtils.cs" />
+    <Compile Include="Module_Common\Utils\GraphicUtils.cs" />
     <Compile Include="Module_Common\Utils\GZipUtils.cs" />
     <Compile Include="Module_Common\Utils\MathAlgorithmUtils.cs" />
     <Compile Include="Module_Common\Utils\ReflectUtils.cs" />
@@ -243,14 +245,6 @@
     <Compile Include="Module_SupportLibs\Log4Net\Utils\LayoutTag.cs" />
     <Compile Include="Module_SupportLibs\Log4Net\Utils\TemplateMethod\Log4NetTemplateMethod.cs" />
     <Compile Include="Module_SupportLibs\Log4Net\Utils\TemplateMethod\SimpleFileAppendTemplate.cs" />
-    <Compile Include="Module_SupportLibs\MarkDownSharpTools\MarkDownHTMLHelper.cs" />
-    <Compile Include="Module_SupportLibs\MarkDownSharpTools\MarkDownSymbol.cs" />
-    <Compile Include="Module_SupportLibs\MarkDownSharpTools\UC\UC MarkDownEdit.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Module_SupportLibs\MarkDownSharpTools\UC\UC MarkDownEdit.Designer.cs">
-      <DependentUpon>UC MarkDownEdit.cs</DependentUpon>
-    </Compile>
     <Compile Include="Module_SupportLibs\MoonORM\Componet\IDataBaseFactory.cs" />
     <Compile Include="Module_SupportLibs\MoonORM\Componet\IQueryCommand.cs" />
     <Compile Include="Module_SupportLibs\MoonORM\ConstDef\DBConst.cs" />
@@ -281,15 +275,10 @@
     <Content Include="Module_SupportLibs\AsposeWord\Aspose.Words.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Module_SupportLibs\JsonTool\Newtonsoft.Json.dll" />
     <Content Include="Module_SupportLibs\Log4Net\log4net.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Module_SupportLibs\Log4Net\Log4Net.xml" />
-    <Content Include="Module_SupportLibs\MarkDownSharpTools\DLL\CustomMarkDownCss.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Module_SupportLibs\MarkDownSharpTools\DLL\MarkdownSharp.dll" />
     <Content Include="Module_SupportLibs\MoonORM\Moon.Orm.dll" />
     <Content Include="Module_SupportLibs\MoonORM\MySql.Data.dll" />
   </ItemGroup>
@@ -306,12 +295,10 @@
     <EmbeddedResource Include="Module_SupportLibs\DevExpressionTools\CotrolsEdit\NumberRangeEdit.resx">
       <DependentUpon>NumberRangeEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Module_SupportLibs\MarkDownSharpTools\UC\UC MarkDownEdit.resx">
-      <DependentUpon>UC MarkDownEdit.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Module_SupportLibs\MoonORM\UC\UC_Connect2Sqlite.resx">
       <DependentUpon>UC_Connect2Sqlite.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

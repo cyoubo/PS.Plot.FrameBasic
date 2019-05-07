@@ -10,8 +10,6 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.AsposeWord.Entry
     {
         public string ExportPath { get; set; }
 
-       
-
         private IDictionary<string, object> m_ContextDict = new Dictionary<string, object>();
 
         public object GetContext(string Tag)

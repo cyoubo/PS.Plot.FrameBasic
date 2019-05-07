@@ -242,6 +242,7 @@
     <Compile Include="Module_SupportLibs\Log4Net\Utils\AppenderEntries\AppenderEntry.cs" />
     <Compile Include="Module_SupportLibs\Log4Net\Utils\AppenderEntries\FileAppenderEntry.cs" />
     <Compile Include="Module_SupportLibs\Log4Net\Utils\EntryEnum\EnumFileAppenderTag.cs" />
+    <Compile Include="Module_SupportLibs\Log4Net\Utils\FileLogReader.cs" />
     <Compile Include="Module_SupportLibs\Log4Net\Utils\LayoutTag.cs" />
     <Compile Include="Module_SupportLibs\Log4Net\Utils\TemplateMethod\Log4NetTemplateMethod.cs" />
     <Compile Include="Module_SupportLibs\Log4Net\Utils\TemplateMethod\SimpleFileAppendTemplate.cs" />

@@ -399,14 +399,21 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.DevExpressionTools
 
         public void UpdateTableSourceAsyn(DataTable dataTable)
         {
-            if (this.GridControl.InvokeRequired == true)
+            try
             {
-                UpdateTableSourceAsynHanlder hanlder = new UpdateTableSourceAsynHanlder(UpdateTableSourceAsyn);
-                this.GridControl.Invoke(hanlder, new object[] { dataTable });
+                if (this.GridControl.InvokeRequired == true)
+                {
+                    UpdateTableSourceAsynHanlder hanlder = new UpdateTableSourceAsynHanlder(UpdateTableSourceAsyn);
+                    this.GridControl.Invoke(hanlder, new object[] { dataTable });
+                }
+                else
+                {
+                    this.GridControl.DataSource = dataTable;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                this.GridControl.DataSource = dataTable;
+                string er = ex.Message;
             }
         }
     }

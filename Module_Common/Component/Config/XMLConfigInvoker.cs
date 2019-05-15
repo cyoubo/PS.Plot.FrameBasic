@@ -9,20 +9,31 @@ using System.Xml;
 
 namespace PS.Plot.FrameBasic.Module_Common.Component.Config
 {
+
+
     public class XMLConfigInvoker : BaseConfigFileInvoker
     {
-        private const string RootNodeName = "Configs";
+        public const string RootNodeName = "Configs";
 
-        private XmlDocument document;
-        private XmlNode rootNode;
+        public XmlDocument document { get; protected set; }
+        public XmlNode rootNode { get; protected set; }
+
+        public XMLConfigInvokerUtils InvokerUtils { get; private set; }
 
         public XMLConfigInvoker(string ConfigFileName, string ConfigFilePath)
         {
             this.ConfigFileName = ConfigFileName;
             this.ConfigFilePath = ConfigFilePath;
+            
         }
 
-        public bool StartEdit()
+        public XMLConfigInvoker(string ConfigFileFullName)
+        {
+            this.ConfigFileName = Path.GetFileName(ConfigFileFullName);
+            this.ConfigFilePath = Path.GetDirectoryName(ConfigFileFullName);
+        }
+
+        public bool StartEdit(bool isOverrive = false)
         { 
             bool result = false;
             try
@@ -30,13 +41,23 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.Config
                 document = new XmlDocument();
                 if (ExistConfigFile())
                 {
-
-                    document.Load(onCombineFullPath());
-                    rootNode = document.SelectSingleNode(RootNodeName);
-                    if (rootNode == null)
+                    if (isOverrive == false)
                     {
-                        ErrorMessage = "没有找到Configs节点";
-                        return result;
+                        document.Load(onCombineFullPath());
+                        rootNode = document.SelectSingleNode(RootNodeName);
+                        if (rootNode == null)
+                        {
+                            ErrorMessage = "没有找到Configs节点";
+                            return result;
+                        }
+                    }
+                    else
+                    {
+                        File.Delete(onCombineFullPath());
+                        XmlDeclaration declaration = document.CreateXmlDeclaration("1.0", "utf-8", null);
+                        rootNode = document.CreateElement(RootNodeName);
+                        document.AppendChild(declaration);
+                        document.AppendChild(rootNode);
                     }
                 }
                 else
@@ -47,6 +68,8 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.Config
                     document.AppendChild(rootNode);
                 }
                 result = true;
+                //构造工具类
+                InvokerUtils = new XMLConfigInvokerUtils(this);
             }
             catch (Exception ex)
             {
@@ -74,26 +97,7 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.Config
             return result;
         }
 
-        public void WriteValue(string ProperityName, string Value)
-        {
-            XmlNode node = document.SelectSingleNode("/" + RootNodeName + "/" + ProperityName);
-            if (node == null)
-            {
-                node = this.document.CreateNode(XmlNodeType.Element, ProperityName, null);
-                node.InnerText = Value;
-                this.rootNode.AppendChild(node);
-            }
-            else
-            {
-                node.InnerText = Value;
-            }
-        }
-
-        public string ReadValue(string ProperityName,string defalutResult="")
-        {
-            XmlNode node = document.SelectSingleNode("/" + RootNodeName + "/" + ProperityName);
-            return node == null ? defalutResult : node.InnerText;
-        }
+       
 
         public bool ReadConfigParam(IXmlConfigParam param)
         {
@@ -125,45 +129,91 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.Config
             return result;
         }
 
-        public bool ReadProperity<T>(ref T configParam)
+        //public bool ReadProperity<T>(ref T configParam)
+        //{
+        //    bool result = false;
+        //    try
+        //    {
+        //        Type type = configParam.GetType();
+        //        PropertyInfo[] propertyInfos = type.GetProperties();
+        //        foreach (PropertyInfo propertyInfo in propertyInfos)
+        //        {
+        //            string value = ReadValue(propertyInfo.Name, "");
+        //            propertyInfo.SetValue(configParam, value);
+        //        }
+        //        result = true;
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        ErrorMessage = ex.Message;
+        //    }
+        //    return result;
+        //}
+
+        //public bool WriteProperity<T>(T configParam)
+        //{
+        //    bool result = false;
+        //    try
+        //    {
+        //        Type type = configParam.GetType();
+        //        PropertyInfo[] propertyInfos = type.GetProperties();
+        //        foreach (PropertyInfo propertyInfo in propertyInfos)
+        //        {
+        //            WriteValue(propertyInfo.Name, propertyInfo.GetValue(configParam).ToString());
+        //        }
+        //        result = true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ErrorMessage = ex.Message;
+        //    }
+        //    return result;
+        //}
+    }
+
+    public class XMLConfigInvokerUtils
+    {
+        private XMLConfigInvoker invoker;
+
+        public XMLConfigInvokerUtils(XMLConfigInvoker invoker)
         {
-            bool result = false;
-            try
-            {
-                Type type = configParam.GetType();
-                PropertyInfo[] propertyInfos = type.GetProperties();
-                foreach (PropertyInfo propertyInfo in propertyInfos)
-                {
-                    string value = ReadValue(propertyInfo.Name, "");
-                    propertyInfo.SetValue(configParam, value);
-                }
-                result = true;
-            }
-            catch(Exception ex)
-            {
-                ErrorMessage = ex.Message;
-            }
-            return result;
+            this.invoker = invoker;
         }
 
-        public bool WriteProperity<T>(T configParam)
+        public void WriteValue(string ProperityName, string Value)
         {
-            bool result = false;
-            try
+            XmlNode node = invoker.document.SelectSingleNode("/" + XMLConfigInvoker.RootNodeName + "/" + ProperityName);
+            if (node == null)
             {
-                Type type = configParam.GetType();
-                PropertyInfo[] propertyInfos = type.GetProperties();
-                foreach (PropertyInfo propertyInfo in propertyInfos)
-                {
-                    WriteValue(propertyInfo.Name, propertyInfo.GetValue(configParam).ToString());
-                }
-                result = true;
+                node = invoker.document.CreateNode(XmlNodeType.Element, ProperityName, null);
+                node.InnerText = Value;
+                invoker.rootNode.AppendChild(node);
             }
-            catch (Exception ex)
+            else
             {
-                ErrorMessage = ex.Message;
+                node.InnerText = Value;
             }
-            return result;
+        }
+
+        public void WriteValue(string ProperityName, string Value, XmlNode parentNode)
+        {
+            XmlNode node = invoker.document.SelectSingleNode("/" + XMLConfigInvoker.RootNodeName + "/"  +ProperityName);
+            if (node == null)
+            {
+                node = invoker.document.CreateNode(XmlNodeType.Element, ProperityName, null);
+                node.InnerText = Value;
+                parentNode.AppendChild(node);
+            }
+            else
+            {
+                node.InnerText = Value;
+            }
+        }
+
+        public string ReadValue(string ProperityName, string defalutResult = "")
+        {
+            XmlNode node = invoker. document.SelectSingleNode("/" + XMLConfigInvoker.RootNodeName + "/" + ProperityName);
+            return node == null ? defalutResult : node.InnerText;
         }
     }
 

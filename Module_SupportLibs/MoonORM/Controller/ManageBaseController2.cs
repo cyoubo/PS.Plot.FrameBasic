@@ -54,6 +54,14 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.MoonORM.Controller
             return entry;
         }
 
+        public void ClearTable()
+        {
+            using (var db = this.dbFactory.OpenDefalutDataBase())
+            {
+                db.Remove<V>();
+            }
+        }
+
         protected override Moon.Orm.MQLBase onCreateMQL_QueryEntryByID(int CurrentID)
         {
             return onCreateMQL_QueryAllEntities().Where(onBlindIDWhere(CurrentID));

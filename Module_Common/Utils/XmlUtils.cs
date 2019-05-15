@@ -15,7 +15,7 @@ namespace PS.Plot.FrameBasic.Module_Common.Utils
     /// </summary>
     public class XmlUtils
     {
-        #region 反序列化
+        public static string ErrorMessge { get; protected set; }
         /// <summary>
         /// 反序列化
         /// </summary>
@@ -34,24 +34,11 @@ namespace PS.Plot.FrameBasic.Module_Common.Utils
             }
             catch (Exception e)
             {
-
+                ErrorMessge = e.Message;
                 return null;
             }
         }
-        /// <summary>
-        /// 反序列化
-        /// </summary>
-        /// <param name="type"></param>
-        /// <param name="xml"></param>
-        /// <returns></returns>
-        public static object Deserialize(Type type, Stream stream)
-        {
-            XmlSerializer xmldes = new XmlSerializer(type);
-            return xmldes.Deserialize(stream);
-        }
-        #endregion
 
-        #region 序列化
         /// <summary>
         /// 序列化
         /// </summary>
@@ -60,6 +47,7 @@ namespace PS.Plot.FrameBasic.Module_Common.Utils
         /// <returns></returns>
         public static string Serializer(Type type, object obj)
         {
+            string result = "";
             MemoryStream Stream = new MemoryStream();
             XmlSerializer xml = new XmlSerializer(type);
             try
@@ -67,20 +55,19 @@ namespace PS.Plot.FrameBasic.Module_Common.Utils
                 //序列化对象
                 xml.Serialize(Stream, obj);
             }
-            catch (InvalidOperationException)
+            catch (InvalidOperationException e)
             {
-                throw;
+                ErrorMessge = e.Message;
             }
             Stream.Position = 0;
             StreamReader sr = new StreamReader(Stream);
-            string str = sr.ReadToEnd();
+            result = sr.ReadToEnd();
 
             sr.Dispose();
             Stream.Dispose();
 
-            return str;
+            return result;
         }
 
-        #endregion
     }
 }

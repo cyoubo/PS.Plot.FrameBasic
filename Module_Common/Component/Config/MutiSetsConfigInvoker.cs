@@ -20,11 +20,35 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.Config
 
     public class MutiSetsConfigProperties : IMutiSetsConfigProperties
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public virtual string ConfigFileName {  get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public virtual string RootNodeName { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public virtual string NodeName { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public virtual string InnerTextPropertyName { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public virtual string RootNodeDes { get; set; }
+    }
+    /// <summary>
+    /// 读取类型转换器
+    /// </summary>
+    public interface IReadNodeTypeConverter
+    {
+        string TargetTypeFullName { get; }
+
+        object ConvertTo(string value,PropertyInfo prop);
     }
 
     /// <summary>
@@ -45,6 +69,10 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.Config
         /// 获得读取后的根节点描述
         /// </summary>
         public string RootNodeDescription { get; protected set; }
+
+        public IList<IReadNodeTypeConverter> ReadNodeTypeConvertChains { get; protected set; }
+
+
         /// <summary>
         /// 规则型配置文件读取器
         /// </summary>
@@ -52,6 +80,7 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.Config
         public MutiSetsConfigInvoker(IMutiSetsConfigProperties properties)
         {
             this.Properties = properties;
+            OnInitialReadNodeTypeConverter();
         }
         /// <summary>
         /// 规则型配置文件读取器，需要通过Properties属性对操作参数进行设置
@@ -59,6 +88,18 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.Config
         public MutiSetsConfigInvoker()
         {
             this.Properties = new MutiSetsConfigProperties();
+            OnInitialReadNodeTypeConverter();
+        }
+
+        private void OnInitialReadNodeTypeConverter()
+        {
+            if (ReadNodeTypeConvertChains != null)
+                ReadNodeTypeConvertChains.Clear();
+            ReadNodeTypeConvertChains = new List<IReadNodeTypeConverter>();
+            ReadNodeTypeConvertChains.Add(new StringNodeTypeConverter());
+            ReadNodeTypeConvertChains.Add(new Int64NodeTypeConverter());
+            ReadNodeTypeConvertChains.Add(new Int32NodeTypeConverter());
+            ReadNodeTypeConvertChains.Add(new BooleanNodeTypeConverter());
         }
 
         /// <summary>
@@ -97,12 +138,16 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.Config
                     Type type = typeof(E);
                     foreach (PropertyInfo prop in type.GetProperties())
 	                {
+                        if (prop.CanRead == false)
+                            continue;
+
                         if (prop.Name.Equals(Properties.InnerTextPropertyName))
                             node.InnerText = prop.GetValue(item).ToString();
                         else
                         {
                             XmlAttribute attr = document.CreateAttribute(prop.Name);
-                            attr.Value = prop.GetValue(item).ToString();
+                            object value = prop.GetValue(item);
+                            attr.Value = value == null ? "" : value.ToString();
                             node.Attributes.Append(attr);
                         }
 	                } 
@@ -160,17 +205,27 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.Config
                         object item = type.Assembly.CreateInstance(type.FullName);
                         foreach (PropertyInfo prop in type.GetProperties())
                         {
+                            if (prop.CanWrite == false)
+                                continue;
+
                             if (prop.Name.Equals(Properties.InnerTextPropertyName))
-                                prop.SetValue(item, node.InnerText);
+                                foreach (var converters in ReadNodeTypeConvertChains)
+                                {
+                                    if (prop.PropertyType.FullName.Equals(converters.TargetTypeFullName))
+                                    {
+                                        prop.SetValue(item, node.InnerText);
+                                    }
+                                }
                             else
                             {
-                                try
+                                //责任链模式
+                                foreach (var converters in ReadNodeTypeConvertChains)
                                 {
-                                    prop.SetValue(item, node.Attributes[prop.Name].Value);
-                                }
-                                catch (Exception)
-                                {
-                                    prop.SetValue(item, null);
+                                    if (prop.PropertyType.FullName.Equals(converters.TargetTypeFullName))
+                                    {
+                                        prop.SetValue(item, converters.ConvertTo(node.Attributes[prop.Name].Value, prop));
+                                        break;
+                                    }
                                 }
                             }
                         }
@@ -181,6 +236,129 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.Config
             catch (Exception ex)
             {
                 ErrorMessage = ex.Message;
+            }
+            return result;
+        }
+    }
+
+    public class StringNodeTypeConverter : IReadNodeTypeConverter
+    {
+        public string TargetTypeFullName
+        {
+            get
+            {
+                return typeof(string).FullName;
+            }
+        }
+
+        public object ConvertTo(string value, PropertyInfo prop)
+        {
+            if (value != null && string.IsNullOrEmpty(value) == false)
+                return value;
+            else
+                return "";
+        }
+    }
+
+    public class Int64NodeTypeConverter : IReadNodeTypeConverter
+    {
+        public string TargetTypeFullName
+        {
+            get
+            {
+                return typeof(Int64).FullName;
+            }
+        }
+
+        public object ConvertTo(string value, PropertyInfo prop)
+        {
+            long result = 0L;
+            try
+            {
+                if (value != null && string.IsNullOrEmpty(value) == false)
+                    result = long.Parse(value);
+            }
+            catch (Exception)
+            {
+
+            }
+            return result;
+        }
+    }
+
+    public class Int32NodeTypeConverter : IReadNodeTypeConverter
+    {
+        public string TargetTypeFullName
+        {
+            get
+            {
+                return typeof(Int32).FullName;
+            }
+        }
+
+        public object ConvertTo(string value, PropertyInfo prop)
+        {
+            int result = 0;
+            try
+            {
+                if (value != null && string.IsNullOrEmpty(value) == false)
+                    result = int.Parse(value);
+            }
+            catch (Exception)
+            {
+
+            }
+            return result;
+        }
+    }
+
+    public class DateTimeNodeTypeConverter : IReadNodeTypeConverter
+    {
+        public string TargetTypeFullName
+        {
+            get
+            {
+                return typeof(DateTime).FullName;
+            }
+        }
+
+        public object ConvertTo(string value, PropertyInfo prop)
+        {
+            DateTime result = DateTime.MinValue;
+            try
+            {
+                if (value != null && string.IsNullOrEmpty(value) == false)
+                    result = DateTime.Parse(value);
+            }
+            catch (Exception)
+            {
+
+            }
+            return result;
+        }
+    }
+
+    public class BooleanNodeTypeConverter : IReadNodeTypeConverter
+    {
+        public string TargetTypeFullName
+        {
+            get
+            {
+                return typeof(Boolean).FullName;
+            }
+        }
+
+        public object ConvertTo(string value, PropertyInfo prop)
+        {
+            Boolean result = false;
+            try
+            {
+                if (value != null && string.IsNullOrEmpty(value) == false)
+                    result = Boolean.Parse(value);
+            }
+            catch (Exception)
+            {
+
             }
             return result;
         }

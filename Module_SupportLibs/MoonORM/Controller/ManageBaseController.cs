@@ -19,7 +19,6 @@ namespace PS.Plot.FrameBasic.Module_SupportLibs.MoonORM.Controller
                     result = new List<T>();
                 return result;
             }
-            
         }
 
         public T QueryEntryByID(int targetID)

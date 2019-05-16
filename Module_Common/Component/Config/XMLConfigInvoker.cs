@@ -215,6 +215,26 @@ namespace PS.Plot.FrameBasic.Module_Common.Component.Config
             XmlNode node = invoker. document.SelectSingleNode("/" + XMLConfigInvoker.RootNodeName + "/" + ProperityName);
             return node == null ? defalutResult : node.InnerText;
         }
+
+        public void ConvertToNodeAttribute<T>(XmlNode sign, T item, PropertyInfo[] propertyInfos, string[] IgnorePropNames = null)
+        {
+            foreach (PropertyInfo propertyInfo in propertyInfos)
+            {
+                if (IgnorePropNames == null ||IgnorePropNames.Contains(propertyInfo.Name))
+                    continue;
+                XmlAttribute attr = invoker.document.CreateAttribute(propertyInfo.Name);
+                object valueObj = propertyInfo.GetValue(item);
+                attr.Value = valueObj == null ? "" : propertyInfo.GetValue(item).ToString();
+                sign.Attributes.Append(attr);
+            }
+        }
+
+        public XmlNode CreateSimpleNode(string nodeName, object value)
+        {
+            XmlNode result = invoker.document.CreateElement(nodeName);
+            result.InnerText = value.ToString();
+            return result;
+        }
     }
 
     public interface IXmlConfigParam
